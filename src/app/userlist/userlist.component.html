@@ -1,0 +1,76 @@
+<div class="container pt-5">
+    <button class="btn btn-primary" (click)="togglebtn(initialbtnState)">{{initialbtnState}}</button>
+
+    <div class="row">
+        <div class="col-12">
+            <form action="" *ngIf="userForm" [formGroup]="userForm">
+
+                <table *ngIf="showTable" class="table table-bordered" id="editableTable">
+
+                    <thead>
+                        <tr class="d-flex">
+                            <th>First Name</th>
+                            <th>Middle Name</th>
+                            <th>Last Name</th>
+                            <th style="width: 183px;">Email</th>
+                            <th>Phone</th>
+                            <th>Role</th>
+                            <th>Address</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <tr class="d-flex" *ngFor="let item of userslist; let i = index;">
+
+                            <ng-container *ngIf="!item.editable;">
+                                <td>{{item.fname}}</td>
+                                <td>{{item.mname}}</td>
+                                <td>{{item.lname}}</td>
+                                <td style="width: 183px;">{{item.email}}</td>
+                                <td>{{item.phone}}</td>
+                                <td>{{item.role}}</td>
+                                <td>{{item.address}}</td>
+                                <td>
+                                    <button style="margin-right: 12px;" (click)="edit(i)"><i
+                                            class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                                    <button (click)="dlt(i)"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                </td>
+                            </ng-container>
+
+                            <ng-container *ngIf="item.editable;">
+                                <div formArrayName="users">
+                                    <div [formGroupName]='i'>
+                                        <td> <input class="col-12" formControlName="fname" id="fname_{{i}}"></td>
+                                        <td> <input class="col-12" formControlName="mname" id="mname_{{i}}"></td>
+                                        <td> <input class="col-12" formControlName="lname" id="lname_{{i}}"></td>
+                                        <td style="width: 183px;"> <input class="col-12" formControlName="email"
+                                                id="email_{{i}}"> </td>
+                                        <td> <input class="col-12" formControlName="phone" id="phone_{{i}}"> </td>
+                                        <td>
+                                            <select class="col-12" formControlName="role" id="role_{{i}}">
+                                                <ng-container *ngFor="let el of roles">
+                                                    <option value="{{el}}">{{el}}</option>
+                                                </ng-container>
+                                            </select>
+                                        </td>
+                                        <td> <input class="col-12" formControlName="address" id="address_{{i}}"> </td>
+                                        <td>
+                                            <button style="margin-right: 14px;" (click)="save(i)"><i
+                                                    class="fa fa-floppy-o" aria-hidden="true"></i></button>
+                                            <button (click)="edit(i)"><i class="fa fa-window-close"
+                                                    aria-hidden="true"></i></button>
+                                        </td>
+                                    </div>
+                                </div>
+                            </ng-container>
+
+                        </tr>
+                    </tbody>
+
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
