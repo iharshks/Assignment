@@ -47,7 +47,7 @@
                                         <td> <input class="col-12" formControlName="lname" id="lname_{{i}}"></td>
                                         <td style="width: 183px;"> <input class="col-12" formControlName="email"
                                                 id="email_{{i}}"> </td>
-                                        <td> <input class="col-12" formControlName="phone" id="phone_{{i}}"> </td>
+                                        <td> <input class="col-12" type="number" onkeypress="return event.charCode >= 48" formControlName="phone" id="phone_{{i}}"> </td>
                                         <td>
                                             <select class="col-12" formControlName="role" id="role_{{i}}">
                                                 <ng-container *ngFor="let el of roles">
