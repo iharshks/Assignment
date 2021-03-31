@@ -4,6 +4,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UserlistComponent } from './userlist/userlist.component';
+import { HttpClientModule } from '@angular/common/http';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -12,6 +14,8 @@ import { UserlistComponent } from './userlist/userlist.component';
   ],
   imports: [
     BrowserModule,
+    NgbModule,
+    HttpClientModule,
     AppRoutingModule,
     FormsModule, 
     ReactiveFormsModule,

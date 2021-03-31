@@ -1,5 +1,12 @@
 <div class="container pt-5">
-    <button class="btn btn-primary" (click)="togglebtn(initialbtnState)">{{initialbtnState}}</button>
+    <div class="row">
+        <span>
+            <button class="btn btn-primary" (click)="togglebtn(initialbtnState)">{{initialbtnState}}</button>
+        </span>
+        <span *ngIf="initialbtnState == 'Refresh Data'" style="margin-left: auto">
+            <button class="btn btn-primary" (click)="open(mymodal)">Add User</button>
+        </span>
+    </div>
 
     <div class="row">
         <div class="col-12">
@@ -74,3 +81,32 @@
         </div>
     </div>
 </div>
+
+<ng-template #mymodal let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Create New User</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form *ngIf="addUserForm" [formGroup]="addUserForm">
+        <label class="col-6" for=""> First Name</label> <input class="col-6" formControlName="fname" >
+        <label class="col-6" for=""> Middle Name</label> <input class="col-6" formControlName="mname" >
+        <label class="col-6" for=""> Last Name</label> <input class="col-6" formControlName="lname" >
+        <label class="col-6" for=""> Email</label> <input class="col-6" formControlName="email" >
+        <label class="col-6" for=""> Phone</label> <input class="col-6" type="number" onkeypress="return event.charCode >= 48" formControlName="phone" >
+        <label class="col-6" for=""> Role</label>
+        <select class="col-6" formControlName="role" >
+            <ng-container *ngFor="let el of roles">
+                <option value="{{el}}">{{el}}</option>
+            </ng-container>
+        </select>
+        <label class="col-6" for=""> Address </label> <input class="col-6" formControlName="address" >
+
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="addNewEntry()">Ok</button>
+    </div>
+</ng-template>
