@@ -1,6 +1,7 @@
 import { Role } from '../enum/role.enum'
 
 interface users { 
+    id: string,
     fname: string,
     mname: string,
     lname: string,
